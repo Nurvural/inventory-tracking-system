@@ -21,6 +21,8 @@ Güvenlik	JWT + Spring Security
 
 Loglama	SLF4J / Logback
 
+Test JUnit 5 + Mockito 
+
 Mimari	Layered + Clean Architecture
 
 🔐 Kimlik Doğrulama (JWT)
