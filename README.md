@@ -7,8 +7,6 @@ Amaç, tüm stok hareketlerini ve finansal işlemleri merkezi bir REST API üzer
 
 ⚙️ Teknolojiler
 
-Bileşen	Teknoloji
-
 Backend Framework	Spring Boot
 
 ORM	JPA + Hibernate
