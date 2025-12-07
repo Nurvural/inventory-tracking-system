@@ -15,6 +15,8 @@ Veritabanı	PostgreSQL
 
 Mapping	MapStruct
 
+RabbitMQ
+
 Güvenlik	JWT + Spring Security
 
 Loglama	SLF4J / Logback
