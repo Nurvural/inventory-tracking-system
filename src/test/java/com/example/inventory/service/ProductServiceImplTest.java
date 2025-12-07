@@ -1,5 +1,21 @@
 package com.example.inventory.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+
+import java.math.BigDecimal;
+import java.util.Optional;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+
 import com.example.inventory.dto.product.ProductCreateRequest;
 import com.example.inventory.dto.product.ProductResponse;
 import com.example.inventory.entity.Category;
@@ -10,16 +26,6 @@ import com.example.inventory.mapper.ProductMapper;
 import com.example.inventory.repository.CategoryRepository;
 import com.example.inventory.repository.ProductRepository;
 import com.example.inventory.service.impl.ProductServiceImpl;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.mockito.*;
-
-import java.math.BigDecimal;
-import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class ProductServiceImplTest {
 

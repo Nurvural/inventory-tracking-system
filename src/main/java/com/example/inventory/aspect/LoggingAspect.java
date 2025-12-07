@@ -1,11 +1,14 @@
 package com.example.inventory.aspect;
 
-import lombok.extern.slf4j.Slf4j;
-import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.*;
-import org.springframework.stereotype.Component;
 import java.util.Arrays;
 import java.util.stream.Collectors;
+
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.aspectj.lang.annotation.Aspect;
+import org.springframework.stereotype.Component;
+
+import lombok.extern.slf4j.Slf4j;
 
 @Aspect
 @Component
@@ -23,9 +26,13 @@ public class LoggingAspect {
         Object[] args = joinPoint.getArgs();
         String argsString = Arrays.stream(args)
                 .map(arg -> {
-                    if (arg == null) return "null";
+                    if (arg == null) {
+						return "null";
+					}
                     String argStr = arg.toString();
-                    if (argStr.toLowerCase().contains("password")) return "****";
+                    if (argStr.toLowerCase().contains("password")) {
+						return "****";
+					}
                     return argStr;
                 })
                 .collect(Collectors.joining(", "));

@@ -84,7 +84,7 @@ public class FirmServiceImpl implements FirmService {
     }
  // ---------------- Private validation methods ----------------
     private void validateUniqueName(String name, Long existingId) {
-        boolean exists = existingId == null 
+        boolean exists = existingId == null
             ? firmRepository.existsByNameAndDeletedFalse(name)
             : firmRepository.existsByNameAndDeletedFalseAndIdNot(name, existingId);
         if (exists) {
@@ -93,7 +93,9 @@ public class FirmServiceImpl implements FirmService {
     }
 
     private void validateUniqueTaxNumber(String taxNumber, Long existingId) {
-        if (taxNumber == null || taxNumber.isBlank()) return;
+        if (taxNumber == null || taxNumber.isBlank()) {
+			return;
+		}
 
         boolean exists = existingId == null
             ? firmRepository.existsByTaxNumberAndDeletedFalse(taxNumber)

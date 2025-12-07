@@ -23,6 +23,7 @@ import com.example.inventory.enums.Status;
 import com.example.inventory.exception.BusinessException;
 import com.example.inventory.mapper.SaleItemMapper;
 import com.example.inventory.mapper.SaleMapper;
+import com.example.inventory.messaging.producer.StockUpdateProducer;
 import com.example.inventory.repository.FirmRepository;
 import com.example.inventory.repository.ProductRepository;
 import com.example.inventory.repository.SaleRepository;
@@ -39,6 +40,7 @@ public class SaleServiceImpl implements SaleService {
 	private final FirmRepository firmRepository;
 	private final ProductRepository productRepository;
 	private final SaleItemMapper saleItemMapper;
+	private final StockUpdateProducer stockUpdateProducer;
 
 	@Override
 	public SaleResponse createSale(SaleCreateRequest request) {
@@ -216,7 +218,8 @@ public class SaleServiceImpl implements SaleService {
 			throw new BusinessException("Yetersiz stok: " + product.getName());
 		}
 		// stok miktarını düş
-		product.setStockQuantity(product.getStockQuantity() - request.getQuantity());
+		//product.setStockQuantity(product.getStockQuantity() - request.getQuantity());
+		stockUpdateProducer.sendStockUpdate(product.getId(), request.getQuantity());
 		product.setStatus(product.getStockQuantity() > 0 ? Status.ACTIVE : Status.INACTIVE);
 		productRepository.save(product);
 		SaleItem saleItem = saleItemMapper.toEntity(request, sale, product);
